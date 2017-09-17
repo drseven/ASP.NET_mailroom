@@ -1,0 +1,59 @@
+app
+	home
+
+	address management
+		Negara
+		Provinsi
+		Kota
+		Kecamatan
+		Kelurahan
+
+
+
+	user management
+		users
+		role
+		userlogs
+
+	hrd and internal
+		services users
+		mail room staff
+		individual partner
+		individual courier
+		messenger
+
+		hrd and internal setup
+			job position
+			floor
+			room
+			trip
+
+	office management
+		branch office
+		partner office
+		courier office
+
+
+		office setup
+			branch types
+			partner types
+			courier types
+			division
+			unit
+			cost center
+
+	mail room
+		incoming mail
+		outgoing mail
+		trackers
+
+		mail setup
+			mail types
+			mail contents
+			manifest types
+
+	attachment explorer
+
+	reporting
+
+	about
