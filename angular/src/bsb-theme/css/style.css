@@ -4634,7 +4634,10 @@ section.content {
 
 .table thead tr th {
   padding: 10px;
-  border-bottom: 1px solid #eee; }
+  border-bottom: 1px solid #eee; 
+  color: white;
+  background-color: #2196f3;
+}
 
 .table-bordered {
   border-top: 1px solid #eee; }
@@ -8112,3 +8115,15 @@ html.ie11 .dropdown-menu ul.menu li a {
 html.ie11 .bs-searchbox .form-control {
   width: 90%; }
 
+  /*special by Donny Rhomanzah*/
+  .searchbar-form{
+    margin-bottom: 0px;
+  }
+
+  .searchbar-container{
+    margin: 10px 20px 0px 20px;
+  }
+
+  .searchbar-button{
+    margin-right: 3px; 
+  }

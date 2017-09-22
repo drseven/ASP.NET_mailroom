@@ -13,7 +13,8 @@ export class CreateNegaraComponent extends AppComponentBase {
     @Output() modalSave: EventEmitter<any> = new EventEmitter<any>();
 
     @ViewChild('createNegaraModal') modal: ModalDirective;
-    @ViewChild('nameInput') nameInput: ElementRef;
+    // @ViewChild('nameInput') nameInput: ElementRef;
+    @ViewChild('modalContent') modalContent: ElementRef;
 
     thisData: CreateNegaraInput;
 
@@ -34,7 +35,8 @@ export class CreateNegaraComponent extends AppComponentBase {
     }
 
     onShown(): void {
-        $(this.nameInput.nativeElement).focus();
+        // $(this.nameInput.nativeElement).focus();
+        $.AdminBSB.input.activate($(this.modalContent.nativeElement));
     }
 
     save(): void {

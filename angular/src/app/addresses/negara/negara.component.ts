@@ -16,7 +16,7 @@ export class NegaraComponent extends AppComponentBase implements OnInit {
 
     negara: NegaraListDto[] = [];
     filter: string = '';
-
+    
     constructor(
         injector: Injector,
         private _negaraService: NegaraServiceProxy
@@ -32,6 +32,19 @@ export class NegaraComponent extends AppComponentBase implements OnInit {
         this._negaraService.getNegara(this.filter).subscribe((result) => {
             this.negara = result.items;
         });
+    }
+
+    search(): void {
+        this.getNegara();
+    }
+
+    clearFilter(): void {
+        this.filter = '';
+        this.getNegara();
+    }
+
+    halo(): void {
+        console.log("halo from key");
     }
 
     // Show Modals

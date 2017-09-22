@@ -90,16 +90,16 @@ export class HomeComponent extends AppComponentBase implements AfterViewInit {
             ((window as any).Morris).Donut({
                 element: 'donut_chart',
                 data: [{
-                        label: 'Chrome',
+                        label: 'Invoice',
                         value: 37
                     }, {
-                        label: 'Firefox',
+                        label: 'Pajak',
                         value: 30
                     }, {
-                        label: 'Safari',
+                        label: 'Pengumuman',
                         value: 18
                     }, {
-                        label: 'Opera',
+                        label: 'Polis Asuransi',
                         value: 12
                     },
                     {
