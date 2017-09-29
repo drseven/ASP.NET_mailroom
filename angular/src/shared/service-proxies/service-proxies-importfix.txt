@@ -1,0 +1,14 @@
+import * as moment from 'moment';
+
+import 'rxjs/Rx'; 
+import {Observable} from 'rxjs/Observable';
+import {Injectable, Inject, Optional, OpaqueToken} from '@angular/core';
+import {Http, Headers, Response, RequestOptionsArgs} from '@angular/http';
+
+export const API_BASE_URL = new OpaqueToken('API_BASE_URL');
+
+@Injectable()
+export class AccountServiceProxy {
+    private http: Http;
+    private baseUrl: string;
+    protected jsonParseReviver: (key: string, value: any) => any = undefined;

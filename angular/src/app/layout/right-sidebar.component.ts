@@ -1,6 +1,7 @@
 ﻿import { Component, Injector, ViewEncapsulation, OnInit } from '@angular/core';
 import { AppComponentBase } from '@shared/app-component-base';
 import { ConfigurationServiceProxy, ChangeUiThemeInput } from '@shared/service-proxies/service-proxies';
+import { AppAuthService } from '@shared/auth/app-auth.service';
 
 @Component({
     templateUrl: './right-sidebar.component.html',
@@ -8,6 +9,9 @@ import { ConfigurationServiceProxy, ChangeUiThemeInput } from '@shared/service-p
     encapsulation: ViewEncapsulation.None
 })
 export class RightSideBarComponent extends AppComponentBase implements OnInit {
+
+    shownLoginName: string = "";
+    showUserFullName: string = "";
 
     themes: UiThemeInfo[] = [
         new UiThemeInfo("Red", "red"),
@@ -36,7 +40,8 @@ export class RightSideBarComponent extends AppComponentBase implements OnInit {
 
     constructor(
         injector: Injector,
-        private _configurationService: ConfigurationServiceProxy
+        private _configurationService: ConfigurationServiceProxy,
+        private _authService: AppAuthService
     ) {
         super(injector);
     }
@@ -44,6 +49,10 @@ export class RightSideBarComponent extends AppComponentBase implements OnInit {
     ngOnInit(): void {
         this.selectedThemeCssClass = this.setting.get('App.UiTheme');
         $('body').addClass('theme-' + this.selectedThemeCssClass);
+
+        //app session
+        this.shownLoginName = this.appSession.getShownLoginName();
+        this.showUserFullName = this.appSession.getUserFullName();
     }
 
     setTheme(theme: UiThemeInfo): void {
@@ -59,6 +68,10 @@ export class RightSideBarComponent extends AppComponentBase implements OnInit {
 
             this.selectedThemeCssClass = theme.cssClass;
         });
+    }
+
+    logout(): void {
+        this._authService.logout();
     }
 }
 

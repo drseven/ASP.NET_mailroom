@@ -4,7 +4,7 @@ import { NgModule, Injector, APP_INITIALIZER } from '@angular/core';
 
 import { AbpModule, ABP_HTTP_PROVIDER } from '@abp/abp.module';
 
-import { SharedModule } from '@shared/shared.module';
+import { SharedModules } from '@shared/shared.module';
 import { ServiceProxyModule } from '@shared/service-proxies/service-proxy.module';
 import { RootRoutingModule } from './root-routing.module';
 
@@ -47,7 +47,7 @@ export function getRemoteServiceBaseUrl(): string {
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    SharedModule.forRoot(),
+    SharedModules.forRoot(),
     ModalModule.forRoot(),
     AbpModule,
     ServiceProxyModule,

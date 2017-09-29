@@ -15,6 +15,7 @@ export class HomeComponent extends AppComponentBase implements AfterViewInit {
     }
 
     ngAfterViewInit(): void {
+        this.startClocking();
 
         $(function () {
             //Widgets count
@@ -131,5 +132,18 @@ export class HomeComponent extends AppComponentBase implements AfterViewInit {
 
             return res;
         }
+    }
+
+    thisDatetime = new Date();
+    thisClock ="";
+    thisDate;
+
+    startClocking(): void {
+        setInterval(() => {         //replaced function() by ()=>
+            this.thisDatetime = new Date();
+            // console.log(this.thisDatetime); // just testing if it is working
+            this.thisDate = this.thisDatetime.toDateString();
+            this.thisClock = this.thisDatetime.getHours().toString()+':'+this.thisDatetime.getMinutes().toString()+':'+this.thisDatetime.getSeconds().toString();
+        }, 1000);
     }
 }

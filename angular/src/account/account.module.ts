@@ -10,7 +10,7 @@ import { AccountRoutingModule } from './account-routing.module';
 
 import { ServiceProxyModule } from '@shared/service-proxies/service-proxy.module';
 
-import { SharedModule } from '@shared/shared.module';
+import { SharedModules } from '@shared/shared.module';
 
 import { AccountComponent } from './account.component';
 import { TenantChangeComponent } from './tenant/tenant-change.component';
@@ -28,7 +28,7 @@ import { LoginService } from './login/login.service';
         HttpModule,
         JsonpModule,
         AbpModule,
-        SharedModule,
+        SharedModules,
         ServiceProxyModule,
         AccountRoutingModule,
         ModalModule.forRoot()

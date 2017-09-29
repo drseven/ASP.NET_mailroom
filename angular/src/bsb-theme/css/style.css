@@ -194,7 +194,7 @@ a{cursor: pointer;
   right: 6px;
   font-size: 10px;
   line-height: 15px;
-  background-color: #000;
+  background-color: #f00;
   padding: 0 4px;
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
@@ -6822,7 +6822,7 @@ fieldset[disabled] .form-control {
   right: 6px;
   font-size: 10px;
   line-height: 15px;
-  background-color: #000;
+  background-color: #f00;
   padding: 0 4px;
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
@@ -8127,3 +8127,64 @@ html.ie11 .bs-searchbox .form-control {
   .searchbar-button{
     margin-right: 3px; 
   }
+
+
+ng2-smart-table{
+}
+
+ng2-smart-table table{
+
+}
+
+ng2-smart-table table thead{
+  color: white;
+  background-color: #2196f3;
+}
+
+ng2-smart-table table tr{
+  border: 1px solid #b1b2b3;
+  font-size: 16px;
+}
+
+[_nghost-c1] a{
+  color: white !important;
+}
+
+.acc_trigger{
+  padding: 0px 7px 0px 0px !important;
+  /*margin-top: 20% !important;*/
+  margin-top: 23px!important;
+  /*font-size: large;  */
+  margin-right: 10px;
+}
+
+.ui-datatable th.ui-state-active{
+  background: #ebedf0;
+  color: #555555;
+}
+
+.ui-datatable tbody > tr.ui-widget-content.ui-state-highlight{
+  background: #2196f3;
+}
+
+.ui-fieldset-legend{
+  font-size: 16px;
+  margin-bottom: 5px;
+}
+
+.ui-button.ui-button-secondary:enabled:hover,
+.ui-button.ui-button-secondary:enabled:focus{
+  background-color: #f2f2f2;
+  border-color: #ccc;
+  color: #373a3c;
+}
+
+.ui-button.ui-button-secondary:enabled:active{
+  background-color: #e6e6e6;
+  border-color: #ccc;
+  color: #373a3c;
+}
+
+.ui-float-label{
+  margin-top: 10px;
+}

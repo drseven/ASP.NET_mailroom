@@ -22,10 +22,10 @@ import { MaterialInput } from "shared/directives/material-input.directive";
         MaterialInput
     ]
 })
-export class SharedModule {
+export class SharedModules {
     static forRoot(): ModuleWithProviders {
         return {
-            ngModule: SharedModule,
+            ngModule: SharedModules,
             providers: [
                 AppSessionService,
                 AppUrlService,

@@ -1,20 +1,36 @@
 ﻿<aside id="rightsidebar" class="right-sidebar">
+    <div class="card">
+        <div class="body bg-blue">
+           <div class="row clearfix" style="text-align: center; ">
+                <img src="/assets/images/user.png" width="80" height="80" alt="User" />
+                <p class="font-20 font-bold" style="margin: 0">{{showUserFullName}}</p>
+                <p class="font-12 font-normal" style="margin: 0">({{shownLoginName}})</p>
+           </div>
+           <div class="row clearfix" style="text-align: center; margin-top: 20px">
+                <div class="btn-group btn-group-sm" role="group" aria-label="Small button group">
+                    <button type="button" class="btn btn-info waves-effect">
+                        <i class="material-icons">lock</i>
+                        <span>Change Password</span>
+                    </button>
+                    <button type="button" class="btn btn-danger waves-effect" (click)="logout()">
+                        <i class="material-icons">exit_to_app</i>
+                        <span>Logout</span>
+                    </button>
+                </div>
+           </div>
+        </div>
+    </div>
     <ul class="nav nav-tabs tab-nav-right" role="tablist">
-        <li role="presentation" class="active"><a href="#skins" data-toggle="tab">SKINS</a></li>
+        <li role="presentation" class="active"><a href="#mail" data-toggle="tab">MAILBOX</a></li>
         <li role="presentation"><a href="#settings" data-toggle="tab">SETTINGS</a></li>
     </ul>
     <div class="tab-content">
-        <div role="tabpanel" class="tab-pane fade in active in active" id="skins">
-            <ul class="demo-choose-skin">
-                <li *ngFor="let theme of themes" [ngClass]="{'active': selectedThemeCssClass == theme.cssClass}" (click)="setTheme(theme)">
-                    <div class="{{theme.cssClass}}"></div>
-                    <span>{{theme.name}}</span>
-                </li>
-            </ul>
+        <div role="tabpanel" class="tab-pane fade in active in active" id="mail">
+            MAIL WILL HERE
         </div>
         <div role="tabpanel" class="tab-pane fade" id="settings">
             <div class="demo-settings">
-                <p>GENERAL SETTINGS</p>
+                <!-- <p>GENERAL SETTINGS</p>
                 <ul class="setting-list">
                     <li>
                         <span>Report Panel Usage</span>
@@ -43,7 +59,7 @@
                             <label><input type="checkbox" checked><span class="lever"></span></label>
                         </div>
                     </li>
-                </ul>
+                </ul> -->
                 <p>ACCOUNT SETTINGS</p>
                 <ul class="setting-list">
                     <li>
@@ -57,6 +73,13 @@
                         <div class="switch">
                             <label><input type="checkbox" checked><span class="lever"></span></label>
                         </div>
+                    </li>
+                </ul>
+                <p>THEME COLOR</p>
+                <ul class="demo-choose-skin">
+                    <li *ngFor="let theme of themes" [ngClass]="{'active': selectedThemeCssClass == theme.cssClass}" (click)="setTheme(theme)">
+                        <div class="{{theme.cssClass}}"></div>
+                        <span>{{theme.name}}</span>
                     </li>
                 </ul>
             </div>

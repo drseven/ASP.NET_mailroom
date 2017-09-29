@@ -12,7 +12,7 @@ import { AppComponent } from './app.component';
 import { AbpModule } from '@abp/abp.module';
 
 import { ServiceProxyModule } from '@shared/service-proxies/service-proxy.module';
-import { SharedModule } from '@shared/shared.module';
+import { SharedModules } from '@shared/shared.module';
 
 // root
 import { HomeComponent } from '@app/home/home.component';
@@ -50,8 +50,25 @@ import { SideBarUserAreaComponent } from '@app/layout/sidebar-user-area.componen
 import { SideBarNavComponent } from '@app/layout/sidebar-nav.component';
 import { SideBarFooterComponent } from '@app/layout/sidebar-footer.component';
 import { RightSideBarComponent } from '@app/layout/right-sidebar.component';
-
+import { Ng2SmartTableModule } from 'ng2-smart-table';
 import { MaterialInput } from '@shared/directives/material-input.directive';
+
+//primeNG
+import {
+    DataTableModule,
+    SharedModule,
+    ToolbarModule,
+    ButtonModule,
+    SplitButtonModule,
+    InputTextModule,
+    PaginatorModule,
+    TabViewModule,
+    FieldsetModule,
+    PanelModule,
+    ConfirmDialogModule,
+    ConfirmationService
+} from 'primeng/primeng';
+
 
 @NgModule({
     declarations: [
@@ -81,8 +98,7 @@ import { MaterialInput } from '@shared/directives/material-input.directive';
         SideBarUserAreaComponent,
         SideBarNavComponent,
         SideBarFooterComponent,
-        RightSideBarComponent
-    
+        RightSideBarComponent    
     ],
     imports: [
         CommonModule,
@@ -93,11 +109,23 @@ import { MaterialInput } from '@shared/directives/material-input.directive';
         AbpModule,
         AppRoutingModule,
         ServiceProxyModule,
+        SharedModules,
+        NgxPaginationModule,
+        Ng2SmartTableModule,
+        DataTableModule,
         SharedModule,
-        NgxPaginationModule
+        ToolbarModule,
+        ButtonModule,
+        SplitButtonModule,
+        InputTextModule,
+        PaginatorModule,
+        TabViewModule,
+        FieldsetModule,
+        PanelModule,
+        ConfirmDialogModule
     ],
     providers: [
-
+        ConfirmationService
     ]
 })
 export class AppModule { }

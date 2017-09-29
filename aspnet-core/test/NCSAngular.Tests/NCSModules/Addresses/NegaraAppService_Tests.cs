@@ -15,13 +15,13 @@ namespace NCSAngular.Tests.NCSModules.Addresses
         }
 
         [Fact]
-        public void Should_Get_All_People_Without_Any_Filter()
+        public void Should_Get_All_Negara_Without_Any_Filter()
         {
             //Act
-            var persons = _negaraAppService.GetNegara(new GetNegaraInput());
+            var negaras = _negaraAppService.GetNegara(new GetNegaraInput());
 
             //Assert
-            persons.Items.Count.ShouldBe(1);
+            negaras.Items.Count.ShouldBe(1);
         }
     }
 }

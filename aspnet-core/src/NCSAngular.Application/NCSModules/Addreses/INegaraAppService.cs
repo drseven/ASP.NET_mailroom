@@ -82,6 +82,24 @@ namespace NCSAngular.NCSModules.Addreses
             var negara = ObjectMapper.Map<ADNegara>(input);
             await _negaraRepository.InsertAsync(negara);
         }
+
+        public Task<ListResultDto<NegaraListDto>> GetAllNegara(GetNegaraInput input)
+        {
+            var thisnegara = _negaraRepository
+                .GetAll()
+                .WhereIf(
+                    !input.Filter.IsNullOrEmpty(),
+                    p => p.Name.Contains(input.Filter) ||
+                         p.Code.Contains(input.Filter)
+                )
+                .OrderBy(p => p.Code)
+                .ThenBy(p => p.Name)
+                .ToList();
+
+            return Task.FromResult(new ListResultDto<NegaraListDto>(
+                ObjectMapper.Map<List<NegaraListDto>>(thisnegara)
+            ));
+        }
     }
 
 }
