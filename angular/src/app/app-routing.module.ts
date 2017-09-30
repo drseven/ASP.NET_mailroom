@@ -49,7 +49,7 @@ import { NegaraComponent } from './addresses/negara/negara.component';
                     { path: 'trackers', component: TrackersComponent },
 
                     //addresses
-                    { path: 'negara', component: NegaraComponent },
+                    { path: 'negara', component: NegaraComponent, data: { permission: 'Pages.Addresses.Negara' } },
 
 
                     { path: 'about', component: AboutComponent }                    

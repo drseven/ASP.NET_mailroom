@@ -1,0 +1,18 @@
+{
+    "data": 
+    [
+        {
+            "label": "Example Documents",
+            "data": "Example",
+            "expandedIcon": "fa-folder-open",
+            "collapsedIcon": "fa-folder",
+            "children": [
+                {"label": "barcelona.jpg", "icon": "fa-file-image-o", "data": "4210pnd012gbpoled921y.jpg"},
+                {"label": "MU.png", "icon": "fa-file-image-o", "data": "sabdf72boasgf82wubda8.png"},
+                {"label": "persib.docx", "icon": "fa-file-word-o", "data": "asfdqrfef325aw12.docx"},
+                {"label": "bandung.xlsx", "icon": "fa-file-excel-o", "data": "21gby21g4osdgoq3.xlsx"},
+                {"label": "sumedang.pdf", "icon": "fa-file-pdf-o", "data": "d21yrblsuaigf82ogbousa.pdf"}
+            ]
+        }
+    ]
+}

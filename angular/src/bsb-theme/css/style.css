@@ -8188,3 +8188,55 @@ ng2-smart-table table tr{
 .ui-float-label{
   margin-top: 10px;
 }
+
+.ui-tabview-nav{
+  background: #2196f3 !important; 
+  border: none;
+}
+
+.ui-tabview .ui-tabview-nav > li.ui-state-default{
+  background: #d6d6d6;
+  border-color: #2196f3;
+}
+
+.ui-tabview .ui-tabview-nav > li.ui-state-active{
+ background: white; 
+}
+
+.ui-tabview-selected{
+
+}
+.attachmentViewer > .ui-tabview-panel{
+  height: calc(100vh - 160px);  
+}
+
+.pdfContainer{
+  /*height: 100%;*/
+  height: calc(100% - 35px);  
+  overflow: auto;
+  background-color: #2f2f2f;
+  padding: 5px 5px 0px 5px;
+}
+
+.pdfToolbar > .ui-toolbar{
+  background: linear-gradient(to bottom, #f3f3f3 0%, #b9b9b9 100%);
+  border-radius: 3px 3px 0 0;
+  border: 1px solid #b3adad;
+}
+
+.pdfPageBox{
+  width: 40px;
+  height: 27px;
+  text-align: right;
+  background-color: #c7c7c7;
+  border: 1px solid #8c8b8b;
+}
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+input[type='number'] {
+    -moz-appearance:textfield;
+}

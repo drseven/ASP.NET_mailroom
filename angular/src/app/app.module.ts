@@ -17,10 +17,13 @@ import { SharedModules } from '@shared/shared.module';
 // root
 import { HomeComponent } from '@app/home/home.component';
 import { AboutComponent } from '@app/about/about.component';
-import { AttachmentComponent } from '@app/attachment/attachment.component';
 import { TenantsComponent } from '@app/tenants/tenants.component';
 import { CreateTenantComponent } from './tenants/create-tenant/create-tenant.component';
 import { EditTenantComponent } from './tenants/edit-tenant/edit-tenant.component';
+
+//attachement
+import { AttachmentComponent } from '@app/attachment/attachment.component';
+import { PDFViewerComponent } from '@app/attachment/viewer/pdfviewer.component';
 
 // addresses
 import { NegaraComponent } from '@app/addresses/negara/negara.component';
@@ -66,8 +69,16 @@ import {
     FieldsetModule,
     PanelModule,
     ConfirmDialogModule,
-    ConfirmationService
+    ConfirmationService,
+    TreeModule,
+    ContextMenuModule,
+    DropdownModule
 } from 'primeng/primeng';
+
+//documentViewer
+import { PdfViewerComponent } from 'ng2-pdf-viewer';
+
+import { WindowRef } from '@shared/WindowRef';
 
 
 @NgModule({
@@ -76,7 +87,6 @@ import {
         HomeComponent,
         AboutComponent,
         TrackersComponent,
-        AttachmentComponent,
         LogsComponent,
         TenantsComponent,
 		CreateTenantComponent,
@@ -88,6 +98,10 @@ import {
 		CreateRoleComponent,
 		EditRoleComponent,
 
+        //attachment
+        AttachmentComponent,
+        PDFViewerComponent,
+
         //addreses
         NegaraComponent,
         CreateNegaraComponent,
@@ -98,7 +112,9 @@ import {
         SideBarUserAreaComponent,
         SideBarNavComponent,
         SideBarFooterComponent,
-        RightSideBarComponent    
+        RightSideBarComponent,
+
+        PdfViewerComponent
     ],
     imports: [
         CommonModule,
@@ -122,10 +138,14 @@ import {
         TabViewModule,
         FieldsetModule,
         PanelModule,
-        ConfirmDialogModule
+        ConfirmDialogModule,
+        TreeModule,
+        ContextMenuModule,
+        DropdownModule
     ],
     providers: [
-        ConfirmationService
+        ConfirmationService,
+        WindowRef
     ]
 })
 export class AppModule { }

@@ -1,10 +1,12 @@
 ﻿using Abp.Application.Services;
 using Abp.Application.Services.Dto;
+using Abp.Authorization;
 using Abp.AutoMapper;
 using Abp.Domain.Repositories;
 using Abp.Extensions;
 using Abp.Linq.Extensions;
 using AutoMapper;
+using NCSAngular.Authorization;
 using NCSAngular.NCSDB;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -52,6 +54,7 @@ namespace NCSAngular.NCSModules.Addreses
 
 
     //Implementation
+    //[AbpAuthorize(PermissionNames.Pages_Negara)]
     public class NegaraAppService : NCSAngularAppServiceBase, INegaraAppService
     {
         private readonly IRepository<ADNegara> _negaraRepository;

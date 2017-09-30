@@ -1,21 +1,74 @@
 <div [@routerTransition]>
-    <div class="row margin-bottom-5">
-        <div class="col-xs-12">
-            <div class="page-head">
-                <div class="page-title">
-                    <h1>
-                        <span>Trackers</span>
-                    </h1>
-                </div>
+    <div class="ui-g">
+    <!-- <div class="ui-g-12">
+        <div class="page-head">
+            <div class="page-title">
+                <h1>
+                    <span>Trackers</span>
+                </h1>
             </div>
         </div>
+    </div> -->
+    <div class="ui-g-12 ui-md-12 ui-lg-3 ui-xl-2">
+        <p-tree [value]="files" selectionMode="single" [(selection)]="selectedFile" (onNodeSelect)="nodeSelect($event)" [contextMenu]="tecm"></p-tree>
+        <p-contextMenu #tecm [model]="items"></p-contextMenu>
     </div>
-   
-    <div class="portlet light margin-bottom-0">
-        <div class="portlet-body">
-            
-            <p>ATTACHMENT CONTENT COMES HERE!</p>
+    <div class="ui-g-12 ui-md-12 ui-lg-9 ui-xl-10">
+            <p-tabView (onChange)="handleChange($event)">
+                <p-tabPanel *ngFor="let tab of tabs" 
+                [header]="tab.header" 
+                [closable]="tab.closable" 
+                [selected]="tab.selected" 
+                class="attachmentViewer">
+                    <!-- Open file {{tab.header}} from asset/attachment/{{tab.data}} -->
+                    <div *ngIf="tab.data.includes('.pdf')" style="height: 100%;">
+                        <div>
+                            <p-toolbar class="pdfToolbar">
+                                <div class="ui-toolbar-group-left">
+                                    <button pButton type="button" icon="fa-arrow-left" (click)="pageTo('prev')" [disabled]="pdfPage==1"></button>
+                                    <input 
+                                        type="number" 
+                                        pInputText 
+                                        [(ngModel)]="pdfBufPage" 
+                                        class="pdfPageBox" 
+                                        (keyup.enter)="gotoPageFromBuf()"/> of {{pdfTotalPages}}
+                                    <button pButton type="button" icon="fa-arrow-right" (click)="pageTo('next')" [disabled]="pdfPage==pdfTotalPages"></button>
+                                </div>
 
-        </div>
+                                <div class="ui-toolbar-group-right">
+                                    {{tab.header}}
+                                    <i class="fa fa-ellipsis-v" style="margin: 0 10px;"></i>
+                                    <button pButton type="button" icon="fa-search-minus" [disabled]="curZoom==0.25" (click)="zoomTo('out')"></button>
+                                    <button pButton type="button" icon="fa-search-plus" [disabled]="curZoom==4" (click)="zoomTo('in')"></button>
+                                    <p-dropdown [options]="pdfZoom" [(ngModel)]="curZoom" (onChange)="zoomChanged($event)" [autoWidth]="false"></p-dropdown>
+                                    <i class="fa fa-ellipsis-v" style="margin: 0 10px;"></i>
+                                    <button pButton type="button" icon="fa-print" (click)="printThis(tab.data)"></button>
+                                    <a href={{tab.data}} download={{tab.header}}>
+                                        <button pButton type="button" icon="fa-download"></button>
+                                    </a>
+                                </div>
+                            </p-toolbar>
+                        </div>
+                        <div class="pdfContainer">
+                            <pdf-viewer 
+                            [src]="tab.data" 
+                            [render-text]="true"
+                            (after-load-complete)="pdfLoadCompleted($event)" 
+                            [show-all]="false" 
+                            [(page)]="pdfPage" 
+                            [zoom]="curZoom" style="display: block;"></pdf-viewer>
+                        </div>
+                    </div>
+                    <div *ngIf="tab.data.includes('.png');" >
+                        this is PNG
+                    </div>
+                    <div *ngIf="tab.data.includes('.jpg');" >
+                        this is JPG
+                    </div>
+                    <div *ngIf="tab.data.includes('.bmp');" >
+                        this is BMP
+                    </div>
+                </p-tabPanel>
+            </p-tabView>
     </div>
 </div>
