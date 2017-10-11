@@ -24,6 +24,7 @@ import { TrackersComponent } from './mailroom/trackers/trackers.component';
 
 // addresses
 import { NegaraComponent } from './addresses/negara/negara.component';
+import { ProvinsiComponent } from './addresses/provinsi/provinsi.component';
 
 
 @NgModule({
@@ -50,6 +51,7 @@ import { NegaraComponent } from './addresses/negara/negara.component';
 
                     //addresses
                     { path: 'negara', component: NegaraComponent, data: { permission: 'Pages.Addresses.Negara' } },
+                    { path: 'provinsi', component: ProvinsiComponent, data: { permission: 'Pages.Addresses.Provinsi' } },
 
 
                     { path: 'about', component: AboutComponent }                    

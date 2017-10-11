@@ -15,7 +15,7 @@ export class SideBarNavComponent extends AppComponentBase {
 
         new MenuItem(this.l("Adresses"), "", "place", "", [
             new MenuItem(this.l("Negara"), "", "place", "/app/negara"),
-            new MenuItem(this.l("Provinsi"), "", "place", "google.com"),
+            new MenuItem(this.l("Provinsi"), "", "place", "/app/provinsi"),
             new MenuItem(this.l("Kota"), "", "place", "google.com"),
             new MenuItem(this.l("Kecamatan"), "", "place", "google.com"),
             new MenuItem(this.l("Keluranah/Desa"), "", "place", "google.com"),

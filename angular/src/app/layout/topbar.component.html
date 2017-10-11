@@ -16,17 +16,34 @@
             <a href="javascript:void(0);" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false"></a>
             <a href="javascript:void(0);" class="bars"></a>
             <!-- <a class="navbar-brand" asp-controller="Home" asp-action="Index"><i class="fa fa-cubes"></i> NCSAngular</a> -->
-            <a class="navbar-brand" asp-controller="Home" asp-action="Index"><img src="/assets/images/mailroomlogo.png" style="height: 150%" /></a>
-
+            <a class="navbar-brand" asp-controller="Home" style="padding-left: 15px; padding: 15px 0px;" asp-action="Index">
+                <img src="/assets/images/mailroomlogo.png" style="height: 150%" />
+            </a>
+            <i class="fa fa-spin fa-circle-o-notch" id="topSpin" *ngIf="true"></i>
         </div>
         <div class="collapse navbar-collapse" id="navbar-collapse">
             <ul class="nav navbar-nav navbar-right">
+<!--                 <li>
+                    <button type="button" class="btn bg-blue btn-circle waves-effect waves-circle waves-float">
+                        <i class="material-icons">verified_user</i>
+                    </button>                    
+                </li>
+                <li>
+                    <button type="button" class="btn bg-blue btn-circle waves-effect waves-circle waves-float">
+                        <i class="material-icons">verified_user</i>
+                    </button>                    
+                </li>
+                <li>
+                    <button type="button" class="btn bg-blue btn-circle waves-effect waves-circle waves-float">
+                        <i class="material-icons">verified_user</i>
+                    </button>                    
+                </li> -->
+
                 <!-- search icon -->
                 <!-- <li><a href="javascript:void(0);" class="js-search" data-close="true"><i class="material-icons">search</i></a></li> -->
 
                 <!-- <topbar-languageswitch></topbar-languageswitch> -->
                 <li class="pull-right">
-                    <!-- <a href="javascript:void(0);" class="js-right-sidebar" data-close="true"><i class="material-icons">more_vert</i></a> -->
                     <a href="javascript:void(0);" class="js-right-sidebar acc_trigger" data-close="true">
                         {{showUserFullName}} ({{shownLoginName}})
                         <!-- <img src="/assets/images/user.png" width="32" height="32" alt="User" /> -->

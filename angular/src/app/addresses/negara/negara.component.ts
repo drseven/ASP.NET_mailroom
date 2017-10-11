@@ -1,10 +1,13 @@
 import { Component, Injector, OnInit, ViewChild } from '@angular/core';
 import { AppComponentBase } from '@shared/app-component-base';
 import { appModuleAnimation } from '@shared/animations/routerTransition';
-import { NegaraServiceProxy, NegaraListDto, ListResultDtoOfNegaraListDto,CreateNegaraInput } from '@shared/service-proxies/service-proxies';
-// import { CreateNegaraComponent } from "app/addresses/negara/create-negara/create-negara.component";
-// import { PagedListingComponentBase, PagedRequestDto } from "shared/paged-listing-component-base";
-import {DataTableModule,SharedModule,ToolbarModule,InputTextModule,PaginatorModule,PanelModule,ConfirmDialogModule,ConfirmationService} from 'primeng/primeng';
+import { NegaraServiceProxy, NegaraListDto, ListResultDtoOfNegaraListDto,CreateNegaraInput, EditNegaraInput } from '@shared/service-proxies/service-proxies';
+import swal from 'sweetalert';
+import {DataTableModule,SharedModule,
+    ToolbarModule,InputTextModule,
+    PaginatorModule,PanelModule,
+    SplitButtonModule,MenuModule,
+    MenuItem,TooltipModule,DialogModule} from 'primeng/primeng';
 
 @Component({
     templateUrl: './negara.component.html',
@@ -12,29 +15,34 @@ import {DataTableModule,SharedModule,ToolbarModule,InputTextModule,PaginatorModu
 })
 export class NegaraComponent extends AppComponentBase implements OnInit {
 
-    // @ViewChild('createNegaraModal') createNegaraModal: CreateNegaraComponent;
-
     negara: NegaraListDto[] = [];
     curNegara: NegaraListDto;
     detailData: CreateNegaraInput;
+    updateData: EditNegaraInput;
 
     // Flag
     isSaving: boolean;
-    isLoading: boolean;
+    isLoading: boolean = false;
     isOpenData: boolean = false;
+    isViewOnly: boolean = false;
+    formMode: number = 0;
 
     filter: string = '';
+    bufferFilter: string = '';
     dataTitle: string = 'Please select data to view or edit';
     deleteHeader: string = '';
 
+    tmcMenu: MenuItem[];
+    tmcFreezeOnlyMenu: MenuItem[];
+
 
     //negaraField
+    negaraID: number = 0;
     name: string = '';
     code: string = '';
 
     constructor(
         injector: Injector,
-        private confirmationService: ConfirmationService,
         private _negaraService: NegaraServiceProxy
     ) {
         super(injector);
@@ -42,92 +50,38 @@ export class NegaraComponent extends AppComponentBase implements OnInit {
 
     ngOnInit(): void {
         this.getNegara();
-        // this.resetForm();
-        // this.isLoading = true;
-        // setTimeout(() => {
-        //     this.getNegara.then(dataReturn => this.negara = dataReturn);
-        //     this.isLoading = false;
-        // }, 1000);
+
+        this.tmcMenu = [
+            {label: 'View', icon: 'fa-eye', command: (event) => console.log(event)},
+            {label: 'Edit', icon: 'fa-pencil', command: (event) => console.log(event)},
+            {label: 'Delete', icon: 'fa-trash', command: (event) => console.log(event)},
+            {label: 'Freeze Row', icon: 'fa-link', command: (event) => console.log(event)}
+        ];
     }
     
     ngAfterInit(): void {
         this.resetForm();
     }
 
+
+    // DB TRANSACTION
     getNegara(): void {
-        this._negaraService.getNegara(this.filter).subscribe((result) => {
+        // this._negaraService.getNegara(this.filter).subscribe((result) => {
+        //     this.negara = result.items;
+        // });
+
+        this.isLoading = true;
+
+        this._negaraService.getNegaraAsync(this.filter,0)
+        .finally(() => {
+            this.isLoading=false;
+        })
+        .subscribe((result) =>{
             this.negara = result.items;
-        });
+        })
     }
 
-    search(): void {
-        this.getNegara();
-    }
-
-    clearFilter(): void {
-        this.filter = '';
-        this.getNegara();
-    }
-
-    dataSelected(event): void {
-        this.curNegara = event.data;
-        this.deleteHeader = "Delete record: "+this.curNegara.name+"("+this.curNegara.code+")";
-    }
-
-    openData(): void {
-        this.dataTitle = this.curNegara.name + " ("+this.curNegara.code+")";
-        this.name = this.curNegara.name;
-        this.code = this.curNegara.code;
-        this.isOpenData = true;
-    }
-
-    formCancel(): void {
-        this.resetForm();
-            this.isOpenData=false;
-            this.dataTitle = "Please select data to view or edit";
-    }
-
-    toggleHandler(event):void {
-        if(event.collapsed){
-            this.formCancel();
-        }
-    }
-
-    resetForm(): void {
-        this.name = '';
-        this.code = '';
-    }
-
-    isDataSelected(): boolean{
-        return (this.curNegara != null)
-    }
-
-    newData(): void {
-        this.dataTitle = "Create New Data";
-        this.name = '';
-        this.code = '';
-        this.isOpenData = true;
-    }
-
-    deleteData(): void {
-        this.confirmationService.confirm({
-            message: 'Are you sure that you want to perform this action?',
-            accept: () => {
-                //Actual logic to perform a confirmation
-            }
-        });
-    }
-
-    confirm() {
-        this.confirmationService.confirm({
-            message: 'Are you sure that you want to perform this action?',
-            accept: () => {
-                //Actual logic to perform a confirmation
-            }
-        });
-    }
-
-    save(): void {
+    createNegara(): void {
         this.isSaving = true;
         this.detailData = new CreateNegaraInput();
         this.detailData.name = this.name;
@@ -140,5 +94,126 @@ export class NegaraComponent extends AppComponentBase implements OnInit {
                 this.getNegara();
                 this.isOpenData=false;
             });
+    }
+
+    updateNegara(): void{
+        this.isSaving = true;
+        this.updateData = new EditNegaraInput();
+        this.updateData.name = this.name;
+        this.updateData.code = this.code;
+        this.updateData.id = this.negaraID;
+        this.updateData.lastModifierUserId = this.appSession.getUserID();
+        this._negaraService.editNegara(this.updateData)
+            .finally(() => this.isSaving = false)
+            .subscribe(() => {
+                this.notify.info(this.l('Saved Successfully'));
+                this.resetForm();
+                this.getNegara();
+                this.isOpenData=false;
+            });
+    }
+
+
+
+    // DATA TABLE ACTIVITY
+    search(): void {
+        this.filter = this.bufferFilter;
+        this.getNegara();
+    }
+
+    clearFilter(): void {
+        this.filter = '';
+        this.bufferFilter = '';
+        this.getNegara();
+    }
+
+    refresh(): void {
+        this.bufferFilter = this.filter;
+        this.getNegara();
+    }
+
+
+    isDataSelected(): boolean{
+        return (this.curNegara != null)
+    }
+
+    // CRUD
+    viewData(): void {
+        console.log(this.curNegara);
+        this.isViewOnly = true;
+        this.dataTitle = this.curNegara.name + " ("+this.curNegara.code+")";
+        this.negaraID = this.curNegara.id;
+        this.name = this.curNegara.name;
+        this.code = this.curNegara.code;
+        this.isOpenData = true;
+    }
+
+    editData(): void {
+        this.isViewOnly = false;
+        this.dataTitle = this.curNegara.name + " ("+this.curNegara.code+")";
+        this.negaraID = this.curNegara.id;
+        this.name = this.curNegara.name;
+        this.code = this.curNegara.code;
+        this.isOpenData = true;
+    }
+
+    newData(): void {
+        this.dataTitle = "Create New Data";
+        this.name = '';
+        this.code = '';
+        this.isOpenData = true;
+    }
+
+    deleteData() {
+        swal({
+          title: "Are you sure?",
+          text: "You will not be able to undo this action",
+          type: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#DD6B55",
+          confirmButtonText: "Yes, delete it!",
+          closeOnConfirm: true,
+          dangerMode: true,
+        },
+        confirmed => {
+           if(confirmed) {
+               this._negaraService.deleteNegara(this.curNegara.id).subscribe(() => {
+                    this.notify.info(this.l('SuccessfullyDeleted'));
+                    // _.remove(this.negara, this.curNegara);
+                    this.getNegara();
+                });
+           }else{
+
+           }
+        });
+    }
+
+    save(): void {
+
+    }
+
+    saveUpdate(): void {
+
+    }
+
+    // FORM ACTIVITY
+    formCancel(): void {
+        this.resetForm();
+        this.isOpenData=false;
+    }
+
+    resetForm(): void {
+        this.name = '';
+        this.code = '';
+    }
+
+    completeSelection(): void{
+        if(this.formMode=0)this.createNegara();
+        else this.updateNegara();
+    }
+
+    formClose(): void {
+        this.isViewOnly = false;
+        this.isOpenData = false;
     }
 }

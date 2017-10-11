@@ -196,10 +196,12 @@ export class NegaraServiceProxy {
     /**
      * @return Success
      */
-    getNegara(filter: string): Observable<ListResultDtoOfNegaraListDto> {
+    getNegara(filter: string, limit: number): Observable<ListResultDtoOfNegaraListDto> {
         let url_ = this.baseUrl + "/api/services/app/Negara/GetNegara?";
         if (filter !== undefined)
             url_ += "Filter=" + encodeURIComponent("" + filter) + "&"; 
+        if (limit !== undefined)
+            url_ += "Limit=" + encodeURIComponent("" + limit) + "&"; 
         url_ = url_.replace(/[?&]$/, "");
 
         let options_ = {
@@ -285,6 +287,687 @@ export class NegaraServiceProxy {
         }
         return Observable.of<void>(<any>null);
     }
+
+    /**
+     * @return Success
+     */
+    getNegaraAsync(filter: string, limit: number): Observable<ListResultDtoOfNegaraListDto> {
+        let url_ = this.baseUrl + "/api/services/app/Negara/GetNegaraAsync?";
+        if (filter !== undefined)
+            url_ += "Filter=" + encodeURIComponent("" + filter) + "&"; 
+        if (limit !== undefined)
+            url_ += "Limit=" + encodeURIComponent("" + limit) + "&"; 
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ = {
+            method: "get",
+            headers: new Headers({
+                "Content-Type": "application/json", 
+                "Accept": "application/json"
+            })
+        };
+
+        return this.http.request(url_, options_).flatMap((response_) => {
+            return this.processGetNegaraAsync(response_);
+        }).catch((response_: any) => {
+            if (response_ instanceof Response) {
+                try {
+                    return this.processGetNegaraAsync(response_);
+                } catch (e) {
+                    return <Observable<ListResultDtoOfNegaraListDto>><any>Observable.throw(e);
+                }
+            } else
+                return <Observable<ListResultDtoOfNegaraListDto>><any>Observable.throw(response_);
+        });
+    }
+
+    protected processGetNegaraAsync(response: Response): Observable<ListResultDtoOfNegaraListDto> {
+        const status = response.status; 
+
+        let _headers: any = response.headers ? response.headers.toJSON() : {};
+        if (status === 200) {
+            const _responseText = response.text();
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = resultData200 ? ListResultDtoOfNegaraListDto.fromJS(resultData200) : new ListResultDtoOfNegaraListDto();
+            return Observable.of(result200);
+        } else if (status !== 200 && status !== 204) {
+            const _responseText = response.text();
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+        }
+        return Observable.of<ListResultDtoOfNegaraListDto>(<any>null);
+    }
+
+    /**
+     * @return Success
+     */
+    getNegarabyID(id: number): Observable<ListResultDtoOfNegaraListDto> {
+        let url_ = this.baseUrl + "/api/services/app/Negara/GetNegarabyID?";
+        if (id !== undefined)
+            url_ += "Id=" + encodeURIComponent("" + id) + "&"; 
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ = {
+            method: "get",
+            headers: new Headers({
+                "Content-Type": "application/json", 
+                "Accept": "application/json"
+            })
+        };
+
+        return this.http.request(url_, options_).flatMap((response_) => {
+            return this.processGetNegarabyID(response_);
+        }).catch((response_: any) => {
+            if (response_ instanceof Response) {
+                try {
+                    return this.processGetNegarabyID(response_);
+                } catch (e) {
+                    return <Observable<ListResultDtoOfNegaraListDto>><any>Observable.throw(e);
+                }
+            } else
+                return <Observable<ListResultDtoOfNegaraListDto>><any>Observable.throw(response_);
+        });
+    }
+
+    protected processGetNegarabyID(response: Response): Observable<ListResultDtoOfNegaraListDto> {
+        const status = response.status; 
+
+        let _headers: any = response.headers ? response.headers.toJSON() : {};
+        if (status === 200) {
+            const _responseText = response.text();
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = resultData200 ? ListResultDtoOfNegaraListDto.fromJS(resultData200) : new ListResultDtoOfNegaraListDto();
+            return Observable.of(result200);
+        } else if (status !== 200 && status !== 204) {
+            const _responseText = response.text();
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+        }
+        return Observable.of<ListResultDtoOfNegaraListDto>(<any>null);
+    }
+
+    /**
+     * @return Success
+     */
+    getNegarabyNegaraIDArray(id: number[]): Observable<ListResultDtoOfProvinsiListDto> {
+        let url_ = this.baseUrl + "/api/services/app/Negara/GetNegarabyNegaraIDArray?";
+        if (id !== undefined)
+            id && id.forEach(item => { url_ += "Id=" + encodeURIComponent("" + item) + "&"; });
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ = {
+            method: "get",
+            headers: new Headers({
+                "Content-Type": "application/json", 
+                "Accept": "application/json"
+            })
+        };
+
+        return this.http.request(url_, options_).flatMap((response_) => {
+            return this.processGetNegarabyNegaraIDArray(response_);
+        }).catch((response_: any) => {
+            if (response_ instanceof Response) {
+                try {
+                    return this.processGetNegarabyNegaraIDArray(response_);
+                } catch (e) {
+                    return <Observable<ListResultDtoOfProvinsiListDto>><any>Observable.throw(e);
+                }
+            } else
+                return <Observable<ListResultDtoOfProvinsiListDto>><any>Observable.throw(response_);
+        });
+    }
+
+    protected processGetNegarabyNegaraIDArray(response: Response): Observable<ListResultDtoOfProvinsiListDto> {
+        const status = response.status; 
+
+        let _headers: any = response.headers ? response.headers.toJSON() : {};
+        if (status === 200) {
+            const _responseText = response.text();
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = resultData200 ? ListResultDtoOfProvinsiListDto.fromJS(resultData200) : new ListResultDtoOfProvinsiListDto();
+            return Observable.of(result200);
+        } else if (status !== 200 && status !== 204) {
+            const _responseText = response.text();
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+        }
+        return Observable.of<ListResultDtoOfProvinsiListDto>(<any>null);
+    }
+
+    /**
+     * @return Success
+     */
+    deleteNegara(id: number): Observable<void> {
+        let url_ = this.baseUrl + "/api/services/app/Negara/DeleteNegara?";
+        if (id !== undefined)
+            url_ += "Id=" + encodeURIComponent("" + id) + "&"; 
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ = {
+            method: "delete",
+            headers: new Headers({
+                "Content-Type": "application/json", 
+            })
+        };
+
+        return this.http.request(url_, options_).flatMap((response_) => {
+            return this.processDeleteNegara(response_);
+        }).catch((response_: any) => {
+            if (response_ instanceof Response) {
+                try {
+                    return this.processDeleteNegara(response_);
+                } catch (e) {
+                    return <Observable<void>><any>Observable.throw(e);
+                }
+            } else
+                return <Observable<void>><any>Observable.throw(response_);
+        });
+    }
+
+    protected processDeleteNegara(response: Response): Observable<void> {
+        const status = response.status; 
+
+        let _headers: any = response.headers ? response.headers.toJSON() : {};
+        if (status === 200) {
+            const _responseText = response.text();
+            return Observable.of<void>(<any>null);
+        } else if (status !== 200 && status !== 204) {
+            const _responseText = response.text();
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+        }
+        return Observable.of<void>(<any>null);
+    }
+
+    /**
+     * @return Success
+     */
+    editNegara(input: EditNegaraInput): Observable<void> {
+        let url_ = this.baseUrl + "/api/services/app/Negara/EditNegara";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(input);
+        
+        let options_ = {
+            body: content_,
+            method: "post",
+            headers: new Headers({
+                "Content-Type": "application/json", 
+            })
+        };
+
+        return this.http.request(url_, options_).flatMap((response_) => {
+            return this.processEditNegara(response_);
+        }).catch((response_: any) => {
+            if (response_ instanceof Response) {
+                try {
+                    return this.processEditNegara(response_);
+                } catch (e) {
+                    return <Observable<void>><any>Observable.throw(e);
+                }
+            } else
+                return <Observable<void>><any>Observable.throw(response_);
+        });
+    }
+
+    protected processEditNegara(response: Response): Observable<void> {
+        const status = response.status; 
+
+        let _headers: any = response.headers ? response.headers.toJSON() : {};
+        if (status === 200) {
+            const _responseText = response.text();
+            return Observable.of<void>(<any>null);
+        } else if (status !== 200 && status !== 204) {
+            const _responseText = response.text();
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+        }
+        return Observable.of<void>(<any>null);
+    }
+}
+
+@Injectable()
+export class ProvinsiServiceProxy {
+    private http: Http;
+    private baseUrl: string;
+    protected jsonParseReviver: (key: string, value: any) => any = undefined;
+
+    constructor(@Inject(Http) http: Http, @Optional() @Inject(API_BASE_URL) baseUrl?: string) {
+        this.http = http;
+        this.baseUrl = baseUrl ? baseUrl : "";
+    }
+
+    /**
+     * @return Success
+     */
+    getProvinsi(filter: string, limit: number): Observable<ListResultDtoOfProvinsiListDto> {
+        let url_ = this.baseUrl + "/api/services/app/Provinsi/GetProvinsi?";
+        if (filter !== undefined)
+            url_ += "Filter=" + encodeURIComponent("" + filter) + "&"; 
+        if (limit !== undefined)
+            url_ += "Limit=" + encodeURIComponent("" + limit) + "&"; 
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ = {
+            method: "get",
+            headers: new Headers({
+                "Content-Type": "application/json", 
+                "Accept": "application/json"
+            })
+        };
+
+        return this.http.request(url_, options_).flatMap((response_) => {
+            return this.processGetProvinsi(response_);
+        }).catch((response_: any) => {
+            if (response_ instanceof Response) {
+                try {
+                    return this.processGetProvinsi(response_);
+                } catch (e) {
+                    return <Observable<ListResultDtoOfProvinsiListDto>><any>Observable.throw(e);
+                }
+            } else
+                return <Observable<ListResultDtoOfProvinsiListDto>><any>Observable.throw(response_);
+        });
+    }
+
+    protected processGetProvinsi(response: Response): Observable<ListResultDtoOfProvinsiListDto> {
+        const status = response.status; 
+
+        let _headers: any = response.headers ? response.headers.toJSON() : {};
+        if (status === 200) {
+            const _responseText = response.text();
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = resultData200 ? ListResultDtoOfProvinsiListDto.fromJS(resultData200) : new ListResultDtoOfProvinsiListDto();
+            return Observable.of(result200);
+        } else if (status !== 200 && status !== 204) {
+            const _responseText = response.text();
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+        }
+        return Observable.of<ListResultDtoOfProvinsiListDto>(<any>null);
+    }
+
+    /**
+     * @return Success
+     */
+    getProvinsiAsync(filter: string, limit: number): Observable<ListResultDtoOfProvinsiListDto> {
+        let url_ = this.baseUrl + "/api/services/app/Provinsi/GetProvinsiAsync?";
+        if (filter !== undefined)
+            url_ += "Filter=" + encodeURIComponent("" + filter) + "&"; 
+        if (limit !== undefined)
+            url_ += "Limit=" + encodeURIComponent("" + limit) + "&"; 
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ = {
+            method: "get",
+            headers: new Headers({
+                "Content-Type": "application/json", 
+                "Accept": "application/json"
+            })
+        };
+
+        return this.http.request(url_, options_).flatMap((response_) => {
+            return this.processGetProvinsiAsync(response_);
+        }).catch((response_: any) => {
+            if (response_ instanceof Response) {
+                try {
+                    return this.processGetProvinsiAsync(response_);
+                } catch (e) {
+                    return <Observable<ListResultDtoOfProvinsiListDto>><any>Observable.throw(e);
+                }
+            } else
+                return <Observable<ListResultDtoOfProvinsiListDto>><any>Observable.throw(response_);
+        });
+    }
+
+    protected processGetProvinsiAsync(response: Response): Observable<ListResultDtoOfProvinsiListDto> {
+        const status = response.status; 
+
+        let _headers: any = response.headers ? response.headers.toJSON() : {};
+        if (status === 200) {
+            const _responseText = response.text();
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = resultData200 ? ListResultDtoOfProvinsiListDto.fromJS(resultData200) : new ListResultDtoOfProvinsiListDto();
+            return Observable.of(result200);
+        } else if (status !== 200 && status !== 204) {
+            const _responseText = response.text();
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+        }
+        return Observable.of<ListResultDtoOfProvinsiListDto>(<any>null);
+    }
+
+    /**
+     * @return Success
+     */
+    createProvinsi(input: CreateProvinsiInput): Observable<void> {
+        let url_ = this.baseUrl + "/api/services/app/Provinsi/CreateProvinsi";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(input);
+        
+        let options_ = {
+            body: content_,
+            method: "post",
+            headers: new Headers({
+                "Content-Type": "application/json", 
+            })
+        };
+
+        return this.http.request(url_, options_).flatMap((response_) => {
+            return this.processCreateProvinsi(response_);
+        }).catch((response_: any) => {
+            if (response_ instanceof Response) {
+                try {
+                    return this.processCreateProvinsi(response_);
+                } catch (e) {
+                    return <Observable<void>><any>Observable.throw(e);
+                }
+            } else
+                return <Observable<void>><any>Observable.throw(response_);
+        });
+    }
+
+    protected processCreateProvinsi(response: Response): Observable<void> {
+        const status = response.status; 
+
+        let _headers: any = response.headers ? response.headers.toJSON() : {};
+        if (status === 200) {
+            const _responseText = response.text();
+            return Observable.of<void>(<any>null);
+        } else if (status !== 200 && status !== 204) {
+            const _responseText = response.text();
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+        }
+        return Observable.of<void>(<any>null);
+    }
+
+    /**
+     * @return Success
+     */
+    deleteProvinsi(id: number): Observable<void> {
+        let url_ = this.baseUrl + "/api/services/app/Provinsi/DeleteProvinsi?";
+        if (id !== undefined)
+            url_ += "Id=" + encodeURIComponent("" + id) + "&"; 
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ = {
+            method: "delete",
+            headers: new Headers({
+                "Content-Type": "application/json", 
+            })
+        };
+
+        return this.http.request(url_, options_).flatMap((response_) => {
+            return this.processDeleteProvinsi(response_);
+        }).catch((response_: any) => {
+            if (response_ instanceof Response) {
+                try {
+                    return this.processDeleteProvinsi(response_);
+                } catch (e) {
+                    return <Observable<void>><any>Observable.throw(e);
+                }
+            } else
+                return <Observable<void>><any>Observable.throw(response_);
+        });
+    }
+
+    protected processDeleteProvinsi(response: Response): Observable<void> {
+        const status = response.status; 
+
+        let _headers: any = response.headers ? response.headers.toJSON() : {};
+        if (status === 200) {
+            const _responseText = response.text();
+            return Observable.of<void>(<any>null);
+        } else if (status !== 200 && status !== 204) {
+            const _responseText = response.text();
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+        }
+        return Observable.of<void>(<any>null);
+    }
+
+    /**
+     * @return Success
+     */
+    editProvinsi(input: EditProvinsiInput): Observable<void> {
+        let url_ = this.baseUrl + "/api/services/app/Provinsi/EditProvinsi";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(input);
+        
+        let options_ = {
+            body: content_,
+            method: "post",
+            headers: new Headers({
+                "Content-Type": "application/json", 
+            })
+        };
+
+        return this.http.request(url_, options_).flatMap((response_) => {
+            return this.processEditProvinsi(response_);
+        }).catch((response_: any) => {
+            if (response_ instanceof Response) {
+                try {
+                    return this.processEditProvinsi(response_);
+                } catch (e) {
+                    return <Observable<void>><any>Observable.throw(e);
+                }
+            } else
+                return <Observable<void>><any>Observable.throw(response_);
+        });
+    }
+
+    protected processEditProvinsi(response: Response): Observable<void> {
+        const status = response.status; 
+
+        let _headers: any = response.headers ? response.headers.toJSON() : {};
+        if (status === 200) {
+            const _responseText = response.text();
+            return Observable.of<void>(<any>null);
+        } else if (status !== 200 && status !== 204) {
+            const _responseText = response.text();
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+        }
+        return Observable.of<void>(<any>null);
+    }
+
+    /**
+     * @return Success
+     */
+    getProvinsiTableView(filter: string, limit: number): Observable<ListResultDtoOfProvinsiTableViewListDto> {
+        let url_ = this.baseUrl + "/api/services/app/Provinsi/GetProvinsiTableView?";
+        if (filter !== undefined)
+            url_ += "Filter=" + encodeURIComponent("" + filter) + "&"; 
+        if (limit !== undefined)
+            url_ += "Limit=" + encodeURIComponent("" + limit) + "&"; 
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ = {
+            method: "get",
+            headers: new Headers({
+                "Content-Type": "application/json", 
+                "Accept": "application/json"
+            })
+        };
+
+        return this.http.request(url_, options_).flatMap((response_) => {
+            return this.processGetProvinsiTableView(response_);
+        }).catch((response_: any) => {
+            if (response_ instanceof Response) {
+                try {
+                    return this.processGetProvinsiTableView(response_);
+                } catch (e) {
+                    return <Observable<ListResultDtoOfProvinsiTableViewListDto>><any>Observable.throw(e);
+                }
+            } else
+                return <Observable<ListResultDtoOfProvinsiTableViewListDto>><any>Observable.throw(response_);
+        });
+    }
+
+    protected processGetProvinsiTableView(response: Response): Observable<ListResultDtoOfProvinsiTableViewListDto> {
+        const status = response.status; 
+
+        let _headers: any = response.headers ? response.headers.toJSON() : {};
+        if (status === 200) {
+            const _responseText = response.text();
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = resultData200 ? ListResultDtoOfProvinsiTableViewListDto.fromJS(resultData200) : new ListResultDtoOfProvinsiTableViewListDto();
+            return Observable.of(result200);
+        } else if (status !== 200 && status !== 204) {
+            const _responseText = response.text();
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+        }
+        return Observable.of<ListResultDtoOfProvinsiTableViewListDto>(<any>null);
+    }
+
+    /**
+     * @return Success
+     */
+    getProvinsiTableViewAsync(filter: string, limit: number): Observable<ListResultDtoOfProvinsiTableViewListDto> {
+        let url_ = this.baseUrl + "/api/services/app/Provinsi/GetProvinsiTableViewAsync?";
+        if (filter !== undefined)
+            url_ += "Filter=" + encodeURIComponent("" + filter) + "&"; 
+        if (limit !== undefined)
+            url_ += "Limit=" + encodeURIComponent("" + limit) + "&"; 
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ = {
+            method: "get",
+            headers: new Headers({
+                "Content-Type": "application/json", 
+                "Accept": "application/json"
+            })
+        };
+
+        return this.http.request(url_, options_).flatMap((response_) => {
+            return this.processGetProvinsiTableViewAsync(response_);
+        }).catch((response_: any) => {
+            if (response_ instanceof Response) {
+                try {
+                    return this.processGetProvinsiTableViewAsync(response_);
+                } catch (e) {
+                    return <Observable<ListResultDtoOfProvinsiTableViewListDto>><any>Observable.throw(e);
+                }
+            } else
+                return <Observable<ListResultDtoOfProvinsiTableViewListDto>><any>Observable.throw(response_);
+        });
+    }
+
+    protected processGetProvinsiTableViewAsync(response: Response): Observable<ListResultDtoOfProvinsiTableViewListDto> {
+        const status = response.status; 
+
+        let _headers: any = response.headers ? response.headers.toJSON() : {};
+        if (status === 200) {
+            const _responseText = response.text();
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = resultData200 ? ListResultDtoOfProvinsiTableViewListDto.fromJS(resultData200) : new ListResultDtoOfProvinsiTableViewListDto();
+            return Observable.of(result200);
+        } else if (status !== 200 && status !== 204) {
+            const _responseText = response.text();
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+        }
+        return Observable.of<ListResultDtoOfProvinsiTableViewListDto>(<any>null);
+    }
+
+    /**
+     * @return Success
+     */
+    getProvinsiTableViewbyNegaraID(id: number, limit: number): Observable<ListResultDtoOfProvinsiTableViewListDto> {
+        let url_ = this.baseUrl + "/api/services/app/Provinsi/GetProvinsiTableViewbyNegaraID?";
+        if (id !== undefined)
+            url_ += "Id=" + encodeURIComponent("" + id) + "&"; 
+        if (limit !== undefined)
+            url_ += "Limit=" + encodeURIComponent("" + limit) + "&"; 
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ = {
+            method: "get",
+            headers: new Headers({
+                "Content-Type": "application/json", 
+                "Accept": "application/json"
+            })
+        };
+
+        return this.http.request(url_, options_).flatMap((response_) => {
+            return this.processGetProvinsiTableViewbyNegaraID(response_);
+        }).catch((response_: any) => {
+            if (response_ instanceof Response) {
+                try {
+                    return this.processGetProvinsiTableViewbyNegaraID(response_);
+                } catch (e) {
+                    return <Observable<ListResultDtoOfProvinsiTableViewListDto>><any>Observable.throw(e);
+                }
+            } else
+                return <Observable<ListResultDtoOfProvinsiTableViewListDto>><any>Observable.throw(response_);
+        });
+    }
+
+    protected processGetProvinsiTableViewbyNegaraID(response: Response): Observable<ListResultDtoOfProvinsiTableViewListDto> {
+        const status = response.status; 
+
+        let _headers: any = response.headers ? response.headers.toJSON() : {};
+        if (status === 200) {
+            const _responseText = response.text();
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = resultData200 ? ListResultDtoOfProvinsiTableViewListDto.fromJS(resultData200) : new ListResultDtoOfProvinsiTableViewListDto();
+            return Observable.of(result200);
+        } else if (status !== 200 && status !== 204) {
+            const _responseText = response.text();
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+        }
+        return Observable.of<ListResultDtoOfProvinsiTableViewListDto>(<any>null);
+    }
+
+    /**
+     * @return Success
+     */
+    getProvinsiTableViewbyNegaraIDArray(id: number[], limit: number): Observable<ListResultDtoOfProvinsiTableViewListDto> {
+        let url_ = this.baseUrl + "/api/services/app/Provinsi/GetProvinsiTableViewbyNegaraIDArray?";
+        if (id !== undefined)
+            id && id.forEach(item => { url_ += "Id=" + encodeURIComponent("" + item) + "&"; });
+        if (limit !== undefined)
+            url_ += "Limit=" + encodeURIComponent("" + limit) + "&"; 
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ = {
+            method: "get",
+            headers: new Headers({
+                "Content-Type": "application/json", 
+                "Accept": "application/json"
+            })
+        };
+
+        return this.http.request(url_, options_).flatMap((response_) => {
+            return this.processGetProvinsiTableViewbyNegaraIDArray(response_);
+        }).catch((response_: any) => {
+            if (response_ instanceof Response) {
+                try {
+                    return this.processGetProvinsiTableViewbyNegaraIDArray(response_);
+                } catch (e) {
+                    return <Observable<ListResultDtoOfProvinsiTableViewListDto>><any>Observable.throw(e);
+                }
+            } else
+                return <Observable<ListResultDtoOfProvinsiTableViewListDto>><any>Observable.throw(response_);
+        });
+    }
+
+    protected processGetProvinsiTableViewbyNegaraIDArray(response: Response): Observable<ListResultDtoOfProvinsiTableViewListDto> {
+        const status = response.status; 
+
+        let _headers: any = response.headers ? response.headers.toJSON() : {};
+        if (status === 200) {
+            const _responseText = response.text();
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = resultData200 ? ListResultDtoOfProvinsiTableViewListDto.fromJS(resultData200) : new ListResultDtoOfProvinsiTableViewListDto();
+            return Observable.of(result200);
+        } else if (status !== 200 && status !== 204) {
+            const _responseText = response.text();
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+        }
+        return Observable.of<ListResultDtoOfProvinsiTableViewListDto>(<any>null);
+    }
 }
 
 @Injectable()
@@ -340,12 +1023,6 @@ export class RoleServiceProxy {
             let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
             result200 = resultData200 ? RoleDto.fromJS(resultData200) : new RoleDto();
             return Observable.of(result200);
-        } else if (status === 401) {
-            const _responseText = response.text();
-            return throwException("A server error occurred.", status, _responseText, _headers);
-        } else if (status === 403) {
-            const _responseText = response.text();
-            return throwException("A server error occurred.", status, _responseText, _headers);
         } else if (status !== 200 && status !== 204) {
             const _responseText = response.text();
             return throwException("An unexpected server error occurred.", status, _responseText, _headers);
@@ -395,12 +1072,6 @@ export class RoleServiceProxy {
             let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
             result200 = resultData200 ? RoleDto.fromJS(resultData200) : new RoleDto();
             return Observable.of(result200);
-        } else if (status === 401) {
-            const _responseText = response.text();
-            return throwException("A server error occurred.", status, _responseText, _headers);
-        } else if (status === 403) {
-            const _responseText = response.text();
-            return throwException("A server error occurred.", status, _responseText, _headers);
         } else if (status !== 200 && status !== 204) {
             const _responseText = response.text();
             return throwException("An unexpected server error occurred.", status, _responseText, _headers);
@@ -445,12 +1116,6 @@ export class RoleServiceProxy {
         if (status === 200) {
             const _responseText = response.text();
             return Observable.of<void>(<any>null);
-        } else if (status === 401) {
-            const _responseText = response.text();
-            return throwException("A server error occurred.", status, _responseText, _headers);
-        } else if (status === 403) {
-            const _responseText = response.text();
-            return throwException("A server error occurred.", status, _responseText, _headers);
         } else if (status !== 200 && status !== 204) {
             const _responseText = response.text();
             return throwException("An unexpected server error occurred.", status, _responseText, _headers);
@@ -497,12 +1162,6 @@ export class RoleServiceProxy {
             let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
             result200 = resultData200 ? ListResultDtoOfPermissionDto.fromJS(resultData200) : new ListResultDtoOfPermissionDto();
             return Observable.of(result200);
-        } else if (status === 401) {
-            const _responseText = response.text();
-            return throwException("A server error occurred.", status, _responseText, _headers);
-        } else if (status === 403) {
-            const _responseText = response.text();
-            return throwException("A server error occurred.", status, _responseText, _headers);
         } else if (status !== 200 && status !== 204) {
             const _responseText = response.text();
             return throwException("An unexpected server error occurred.", status, _responseText, _headers);
@@ -551,12 +1210,6 @@ export class RoleServiceProxy {
             let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
             result200 = resultData200 ? RoleDto.fromJS(resultData200) : new RoleDto();
             return Observable.of(result200);
-        } else if (status === 401) {
-            const _responseText = response.text();
-            return throwException("A server error occurred.", status, _responseText, _headers);
-        } else if (status === 403) {
-            const _responseText = response.text();
-            return throwException("A server error occurred.", status, _responseText, _headers);
         } else if (status !== 200 && status !== 204) {
             const _responseText = response.text();
             return throwException("An unexpected server error occurred.", status, _responseText, _headers);
@@ -607,12 +1260,6 @@ export class RoleServiceProxy {
             let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
             result200 = resultData200 ? PagedResultDtoOfRoleDto.fromJS(resultData200) : new PagedResultDtoOfRoleDto();
             return Observable.of(result200);
-        } else if (status === 401) {
-            const _responseText = response.text();
-            return throwException("A server error occurred.", status, _responseText, _headers);
-        } else if (status === 403) {
-            const _responseText = response.text();
-            return throwException("A server error occurred.", status, _responseText, _headers);
         } else if (status !== 200 && status !== 204) {
             const _responseText = response.text();
             return throwException("An unexpected server error occurred.", status, _responseText, _headers);
@@ -1805,6 +2452,379 @@ export class CreateNegaraInput implements ICreateNegaraInput {
 export interface ICreateNegaraInput {
     name: string;
     code: string;
+}
+
+export class ListResultDtoOfProvinsiListDto implements IListResultDtoOfProvinsiListDto {
+    items: ProvinsiListDto[];
+
+    constructor(data?: IListResultDtoOfProvinsiListDto) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(data?: any) {
+        if (data) {
+            if (data["items"] && data["items"].constructor === Array) {
+                this.items = [];
+                for (let item of data["items"])
+                    this.items.push(ProvinsiListDto.fromJS(item));
+            }
+        }
+    }
+
+    static fromJS(data: any): ListResultDtoOfProvinsiListDto {
+        let result = new ListResultDtoOfProvinsiListDto();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        if (this.items && this.items.constructor === Array) {
+            data["items"] = [];
+            for (let item of this.items)
+                data["items"].push(item.toJSON());
+        }
+        return data; 
+    }
+}
+
+export interface IListResultDtoOfProvinsiListDto {
+    items: ProvinsiListDto[];
+}
+
+export class ProvinsiListDto implements IProvinsiListDto {
+    name: string;
+    adNegaraId: number;
+    isDeleted: boolean;
+    deleterUserId: number;
+    deletionTime: moment.Moment;
+    lastModificationTime: moment.Moment;
+    lastModifierUserId: number;
+    creationTime: moment.Moment;
+    creatorUserId: number;
+    id: number;
+
+    constructor(data?: IProvinsiListDto) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(data?: any) {
+        if (data) {
+            this.name = data["name"];
+            this.adNegaraId = data["adNegaraId"];
+            this.isDeleted = data["isDeleted"];
+            this.deleterUserId = data["deleterUserId"];
+            this.deletionTime = data["deletionTime"] ? moment(data["deletionTime"].toString()) : <any>undefined;
+            this.lastModificationTime = data["lastModificationTime"] ? moment(data["lastModificationTime"].toString()) : <any>undefined;
+            this.lastModifierUserId = data["lastModifierUserId"];
+            this.creationTime = data["creationTime"] ? moment(data["creationTime"].toString()) : <any>undefined;
+            this.creatorUserId = data["creatorUserId"];
+            this.id = data["id"];
+        }
+    }
+
+    static fromJS(data: any): ProvinsiListDto {
+        let result = new ProvinsiListDto();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["name"] = this.name;
+        data["adNegaraId"] = this.adNegaraId;
+        data["isDeleted"] = this.isDeleted;
+        data["deleterUserId"] = this.deleterUserId;
+        data["deletionTime"] = this.deletionTime ? this.deletionTime.toISOString() : <any>undefined;
+        data["lastModificationTime"] = this.lastModificationTime ? this.lastModificationTime.toISOString() : <any>undefined;
+        data["lastModifierUserId"] = this.lastModifierUserId;
+        data["creationTime"] = this.creationTime ? this.creationTime.toISOString() : <any>undefined;
+        data["creatorUserId"] = this.creatorUserId;
+        data["id"] = this.id;
+        return data; 
+    }
+}
+
+export interface IProvinsiListDto {
+    name: string;
+    adNegaraId: number;
+    isDeleted: boolean;
+    deleterUserId: number;
+    deletionTime: moment.Moment;
+    lastModificationTime: moment.Moment;
+    lastModifierUserId: number;
+    creationTime: moment.Moment;
+    creatorUserId: number;
+    id: number;
+}
+
+export class EditNegaraInput implements IEditNegaraInput {
+    id: number;
+    name: string;
+    code: string;
+    lastModifierUserId: number;
+
+    constructor(data?: IEditNegaraInput) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(data?: any) {
+        if (data) {
+            this.id = data["id"];
+            this.name = data["name"];
+            this.code = data["code"];
+            this.lastModifierUserId = data["lastModifierUserId"];
+        }
+    }
+
+    static fromJS(data: any): EditNegaraInput {
+        let result = new EditNegaraInput();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["name"] = this.name;
+        data["code"] = this.code;
+        data["lastModifierUserId"] = this.lastModifierUserId;
+        return data; 
+    }
+}
+
+export interface IEditNegaraInput {
+    id: number;
+    name: string;
+    code: string;
+    lastModifierUserId: number;
+}
+
+export class CreateProvinsiInput implements ICreateProvinsiInput {
+    name: string;
+    adNegaraId: number;
+
+    constructor(data?: ICreateProvinsiInput) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(data?: any) {
+        if (data) {
+            this.name = data["name"];
+            this.adNegaraId = data["adNegaraId"];
+        }
+    }
+
+    static fromJS(data: any): CreateProvinsiInput {
+        let result = new CreateProvinsiInput();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["name"] = this.name;
+        data["adNegaraId"] = this.adNegaraId;
+        return data; 
+    }
+}
+
+export interface ICreateProvinsiInput {
+    name: string;
+    adNegaraId: number;
+}
+
+export class EditProvinsiInput implements IEditProvinsiInput {
+    id: number;
+    name: string;
+    adNegaraId: number;
+    lastModifierUserId: number;
+
+    constructor(data?: IEditProvinsiInput) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(data?: any) {
+        if (data) {
+            this.id = data["id"];
+            this.name = data["name"];
+            this.adNegaraId = data["adNegaraId"];
+            this.lastModifierUserId = data["lastModifierUserId"];
+        }
+    }
+
+    static fromJS(data: any): EditProvinsiInput {
+        let result = new EditProvinsiInput();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["name"] = this.name;
+        data["adNegaraId"] = this.adNegaraId;
+        data["lastModifierUserId"] = this.lastModifierUserId;
+        return data; 
+    }
+}
+
+export interface IEditProvinsiInput {
+    id: number;
+    name: string;
+    adNegaraId: number;
+    lastModifierUserId: number;
+}
+
+export class ListResultDtoOfProvinsiTableViewListDto implements IListResultDtoOfProvinsiTableViewListDto {
+    items: ProvinsiTableViewListDto[];
+
+    constructor(data?: IListResultDtoOfProvinsiTableViewListDto) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(data?: any) {
+        if (data) {
+            if (data["items"] && data["items"].constructor === Array) {
+                this.items = [];
+                for (let item of data["items"])
+                    this.items.push(ProvinsiTableViewListDto.fromJS(item));
+            }
+        }
+    }
+
+    static fromJS(data: any): ListResultDtoOfProvinsiTableViewListDto {
+        let result = new ListResultDtoOfProvinsiTableViewListDto();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        if (this.items && this.items.constructor === Array) {
+            data["items"] = [];
+            for (let item of this.items)
+                data["items"].push(item.toJSON());
+        }
+        return data; 
+    }
+}
+
+export interface IListResultDtoOfProvinsiTableViewListDto {
+    items: ProvinsiTableViewListDto[];
+}
+
+export class ProvinsiTableViewListDto implements IProvinsiTableViewListDto {
+    name: string;
+    adNegaraId: number;
+    negaraName: string;
+    userCreate: string;
+    userEdit: string;
+    isDeleted: boolean;
+    deleterUserId: number;
+    deletionTime: moment.Moment;
+    lastModificationTime: moment.Moment;
+    lastModifierUserId: number;
+    creationTime: moment.Moment;
+    creatorUserId: number;
+    id: number;
+
+    constructor(data?: IProvinsiTableViewListDto) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(data?: any) {
+        if (data) {
+            this.name = data["name"];
+            this.adNegaraId = data["adNegaraId"];
+            this.negaraName = data["negaraName"];
+            this.userCreate = data["userCreate"];
+            this.userEdit = data["userEdit"];
+            this.isDeleted = data["isDeleted"];
+            this.deleterUserId = data["deleterUserId"];
+            this.deletionTime = data["deletionTime"] ? moment(data["deletionTime"].toString()) : <any>undefined;
+            this.lastModificationTime = data["lastModificationTime"] ? moment(data["lastModificationTime"].toString()) : <any>undefined;
+            this.lastModifierUserId = data["lastModifierUserId"];
+            this.creationTime = data["creationTime"] ? moment(data["creationTime"].toString()) : <any>undefined;
+            this.creatorUserId = data["creatorUserId"];
+            this.id = data["id"];
+        }
+    }
+
+    static fromJS(data: any): ProvinsiTableViewListDto {
+        let result = new ProvinsiTableViewListDto();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["name"] = this.name;
+        data["adNegaraId"] = this.adNegaraId;
+        data["negaraName"] = this.negaraName;
+        data["userCreate"] = this.userCreate;
+        data["userEdit"] = this.userEdit;
+        data["isDeleted"] = this.isDeleted;
+        data["deleterUserId"] = this.deleterUserId;
+        data["deletionTime"] = this.deletionTime ? this.deletionTime.toISOString() : <any>undefined;
+        data["lastModificationTime"] = this.lastModificationTime ? this.lastModificationTime.toISOString() : <any>undefined;
+        data["lastModifierUserId"] = this.lastModifierUserId;
+        data["creationTime"] = this.creationTime ? this.creationTime.toISOString() : <any>undefined;
+        data["creatorUserId"] = this.creatorUserId;
+        data["id"] = this.id;
+        return data; 
+    }
+}
+
+export interface IProvinsiTableViewListDto {
+    name: string;
+    adNegaraId: number;
+    negaraName: string;
+    userCreate: string;
+    userEdit: string;
+    isDeleted: boolean;
+    deleterUserId: number;
+    deletionTime: moment.Moment;
+    lastModificationTime: moment.Moment;
+    lastModifierUserId: number;
+    creationTime: moment.Moment;
+    creatorUserId: number;
+    id: number;
 }
 
 export class CreateRoleDto implements ICreateRoleDto {

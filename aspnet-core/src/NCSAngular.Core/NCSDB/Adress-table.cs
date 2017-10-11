@@ -81,5 +81,14 @@ namespace NCSAngular.NCSDB
 
     }
 
+    [Table("ADProvinsiTableView")]
+    public class ADProvinsiTableView : FullAuditedEntity
+    {
+        public virtual long ADNegaraId { get; set; }
+        public virtual string Name { get; set; }
+        public virtual string NegaraName { get; set; }
+        public virtual string userCreate { get; set; }
+        public virtual string userEdit { get; set; }
+    }
 }
 

@@ -26,5 +26,8 @@ namespace NCSAngular.EntityFrameworkCore
         public virtual DbSet<ADKota> ADKota { get; set; }
         public virtual DbSet<ADDistrik> ADDistrik { get; set; }
         public virtual DbSet<ADKelurahan> ADKelurahan { get; set; }
+
+        //views
+        public virtual DbSet<ADProvinsiTableView> ADProvinsiTableView { get; set; }
     }
 }

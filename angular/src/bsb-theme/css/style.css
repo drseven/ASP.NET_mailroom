@@ -8240,3 +8240,19 @@ input[type=number]::-webkit-outer-spin-button {
 input[type='number'] {
     -moz-appearance:textfield;
 }
+
+#topSpin{
+  font-size: 10px;
+  color: white;
+}
+
+.ui-dialog.ui-widget .ui-dialog-content {
+  overflow: initial;
+}
+
+.infoDataEdit{
+  font-size: 11px;
+  margin-top: 20px;
+  border-top: grey solid 1px;
+  padding-top: 5px;
+}

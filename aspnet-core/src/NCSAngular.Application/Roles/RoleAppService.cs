@@ -16,7 +16,7 @@ using Abp.UI;
 
 namespace NCSAngular.Roles
 {
-    [AbpAuthorize(PermissionNames.Pages_Roles)]
+    //[AbpAuthorize(PermissionNames.Pages_Roles)]
     public class RoleAppService : AsyncCrudAppService<Role, RoleDto, int, PagedResultRequestDto, CreateRoleDto, RoleDto>, IRoleAppService
     {
         private readonly RoleManager _roleManager;

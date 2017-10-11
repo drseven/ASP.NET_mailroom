@@ -1,3 +1,36 @@
-<p-tabPanel header="PDF VIEWER">
-    This is PDFVIEWER
-</p-tabPanel>
+<div>
+    <p-toolbar class="pdfToolbar">
+        <div class="ui-toolbar-group-left">
+            <button pButton type="button" icon="fa-arrow-left" (click)="pageTo('prev')" [disabled]="pdfPage==1"></button>
+            <input 
+                type="number" 
+                pInputText 
+                [(ngModel)]="pdfBufPage" 
+                class="pdfPageBox" 
+                (keyup.enter)="gotoPageFromBuf()"/> of {{pdfTotalPages}}
+            <button pButton type="button" icon="fa-arrow-right" (click)="pageTo('next')" [disabled]="pdfPage==pdfTotalPages"></button>
+        </div>
+
+        <div class="ui-toolbar-group-right">
+            {{pdfTitle}}
+            <i class="fa fa-ellipsis-v" style="margin: 0 10px;"></i>
+            <button pButton type="button" icon="fa-search-minus" [disabled]="curZoom==0.25" (click)="zoomTo('out')"></button>
+            <button pButton type="button" icon="fa-search-plus" [disabled]="curZoom==4" (click)="zoomTo('in')"></button>
+            <p-dropdown [options]="pdfZoom" [(ngModel)]="curZoom" (onChange)="zoomChanged($event)" [autoWidth]="false"></p-dropdown>
+            <i class="fa fa-ellipsis-v" style="margin: 0 10px;"></i>
+            <button pButton type="button" icon="fa-print" (click)="printThis(pdfUrl)"></button>
+            <a href={{pdfUrl}} download={{pdfTitle}}>
+                <button pButton type="button" icon="fa-download"></button>
+            </a>
+        </div>
+    </p-toolbar>
+</div>
+<div class="pdfContainer">
+    <pdf-viewer 
+    [src]="pdfUrl" 
+    [render-text]="true"
+    (after-load-complete)="pdfLoadCompleted($event)" 
+    [show-all]="false" 
+    [(page)]="pdfPage" 
+    [zoom]="curZoom" style="display: block;"></pdf-viewer>
+</div>

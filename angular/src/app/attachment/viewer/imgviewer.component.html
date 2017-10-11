@@ -1,0 +1,32 @@
+<div>
+    <p-toolbar class="pdfToolbar">
+        <div class="ui-toolbar-group-left">
+        </div>
+
+        <div class="ui-toolbar-group-right">
+            {{imgTitle}}
+            <i class="fa fa-ellipsis-v" style="margin: 0 10px;"></i>
+            <button pButton type="button" icon="fa-search-minus" (click)="zoomTo('out')"></button>
+            <!-- <p-slider [(ngModel)]="valZoom"></p-slider> -->
+            <button pButton type="button" icon="fa-search-plus" (click)="zoomTo('in')"></button>
+            <i class="fa fa-ellipsis-v" style="margin: 0 10px;"></i>
+            <button pButton type="button" icon="fa-print" (click)="printThis(imgUrl)"></button>
+            <a href={{imgUrl}} download={{imgTitle}}>
+                <button pButton type="button" icon="fa-download"></button>
+            </a>
+        </div>
+    </p-toolbar>
+</div>
+
+<div class="pdfContainer">
+    <img src={{imgUrl}} alt={{imgTitle}} width={{imgWidth}}>
+</div>
+<!-- <div class="pdfContainer">
+    <pdf-viewer 
+    [src]="pdfUrl" 
+    [render-text]="true"
+    (after-load-complete)="pdfLoadCompleted($event)" 
+    [show-all]="false" 
+    [(page)]="pdfPage" 
+    [zoom]="curZoom" style="display: block;"></pdf-viewer>
+</div> -->

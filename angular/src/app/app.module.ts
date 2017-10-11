@@ -24,9 +24,11 @@ import { EditTenantComponent } from './tenants/edit-tenant/edit-tenant.component
 //attachement
 import { AttachmentComponent } from '@app/attachment/attachment.component';
 import { PDFViewerComponent } from '@app/attachment/viewer/pdfviewer.component';
+import { IMGViewerComponent } from '@app/attachment/viewer/imgviewer.component';
 
 // addresses
 import { NegaraComponent } from '@app/addresses/negara/negara.component';
+import { ProvinsiComponent } from '@app/addresses/provinsi/provinsi.component';
 import { CreateNegaraComponent } from '@app/addresses/negara/create-negara/create-negara.component';
 
 
@@ -72,13 +74,24 @@ import {
     ConfirmationService,
     TreeModule,
     ContextMenuModule,
-    DropdownModule
+    DropdownModule,
+    SliderModule,
+    TooltipModule,
+    DialogModule,
+    MultiSelectModule
 } from 'primeng/primeng';
 
 //documentViewer
 import { PdfViewerComponent } from 'ng2-pdf-viewer';
 
 import { WindowRef } from '@shared/WindowRef';
+
+//dataServices
+import { GlobalDataService } from '@shared/globaldata.service';
+
+import { MomentModule } from 'angular2-moment';
+
+
 
 
 @NgModule({
@@ -101,10 +114,12 @@ import { WindowRef } from '@shared/WindowRef';
         //attachment
         AttachmentComponent,
         PDFViewerComponent,
+        IMGViewerComponent,
 
         //addreses
         NegaraComponent,
         CreateNegaraComponent,
+        ProvinsiComponent,
 
         //layout
         TopBarComponent,
@@ -130,6 +145,7 @@ import { WindowRef } from '@shared/WindowRef';
         Ng2SmartTableModule,
         DataTableModule,
         SharedModule,
+        MomentModule,
         ToolbarModule,
         ButtonModule,
         SplitButtonModule,
@@ -141,11 +157,16 @@ import { WindowRef } from '@shared/WindowRef';
         ConfirmDialogModule,
         TreeModule,
         ContextMenuModule,
-        DropdownModule
+        DropdownModule,
+        SliderModule,
+        DialogModule,
+        TooltipModule,
+        MultiSelectModule
     ],
     providers: [
         ConfirmationService,
-        WindowRef
+        WindowRef,
+        GlobalDataService
     ]
 })
 export class AppModule { }

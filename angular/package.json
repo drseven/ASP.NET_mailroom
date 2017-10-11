@@ -36,6 +36,7 @@
     "abp-web-resources": "^2.2.1",
     "ag-grid": "^13.2.0",
     "ag-grid-angular": "^13.2.0",
+    "angular2-moment": "^1.7.0",
     "animate.css": "^3.5.2",
     "block-ui": "^2.70.1",
     "bootstrap": "^3.3.7",

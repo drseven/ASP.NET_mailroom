@@ -20,53 +20,15 @@
                 [closable]="tab.closable" 
                 [selected]="tab.selected" 
                 class="attachmentViewer">
-                    <!-- Open file {{tab.header}} from asset/attachment/{{tab.data}} -->
-                    <div *ngIf="tab.data.includes('.pdf')" style="height: 100%;">
-                        <div>
-                            <p-toolbar class="pdfToolbar">
-                                <div class="ui-toolbar-group-left">
-                                    <button pButton type="button" icon="fa-arrow-left" (click)="pageTo('prev')" [disabled]="pdfPage==1"></button>
-                                    <input 
-                                        type="number" 
-                                        pInputText 
-                                        [(ngModel)]="pdfBufPage" 
-                                        class="pdfPageBox" 
-                                        (keyup.enter)="gotoPageFromBuf()"/> of {{pdfTotalPages}}
-                                    <button pButton type="button" icon="fa-arrow-right" (click)="pageTo('next')" [disabled]="pdfPage==pdfTotalPages"></button>
-                                </div>
 
-                                <div class="ui-toolbar-group-right">
-                                    {{tab.header}}
-                                    <i class="fa fa-ellipsis-v" style="margin: 0 10px;"></i>
-                                    <button pButton type="button" icon="fa-search-minus" [disabled]="curZoom==0.25" (click)="zoomTo('out')"></button>
-                                    <button pButton type="button" icon="fa-search-plus" [disabled]="curZoom==4" (click)="zoomTo('in')"></button>
-                                    <p-dropdown [options]="pdfZoom" [(ngModel)]="curZoom" (onChange)="zoomChanged($event)" [autoWidth]="false"></p-dropdown>
-                                    <i class="fa fa-ellipsis-v" style="margin: 0 10px;"></i>
-                                    <button pButton type="button" icon="fa-print" (click)="printThis(tab.data)"></button>
-                                    <a href={{tab.data}} download={{tab.header}}>
-                                        <button pButton type="button" icon="fa-download"></button>
-                                    </a>
-                                </div>
-                            </p-toolbar>
-                        </div>
-                        <div class="pdfContainer">
-                            <pdf-viewer 
-                            [src]="tab.data" 
-                            [render-text]="true"
-                            (after-load-complete)="pdfLoadCompleted($event)" 
-                            [show-all]="false" 
-                            [(page)]="pdfPage" 
-                            [zoom]="curZoom" style="display: block;"></pdf-viewer>
-                        </div>
+                    <!-- PDF VIEWER -->
+                    <div *ngIf="tab.data.includes('.pdf')" style="height: 100%;">
+                        <tab-pdf-viewer [pdfTitle]="tab.header" [pdfUrl]="tab.data"></tab-pdf-viewer>
                     </div>
-                    <div *ngIf="tab.data.includes('.png');" >
-                        this is PNG
-                    </div>
-                    <div *ngIf="tab.data.includes('.jpg');" >
-                        this is JPG
-                    </div>
-                    <div *ngIf="tab.data.includes('.bmp');" >
-                        this is BMP
+
+                    <!-- IMAGE VIEWER -->
+                    <div *ngIf="tab.data.includes('.png') || tab.data.includes('.jpg') || tab.data.includes('.bmp   ');" >
+                        <tab-img-viewer [imgTitle]="tab.header" [imgUrl]="tab.data"></tab-img-viewer>
                     </div>
                 </p-tabPanel>
             </p-tabView>

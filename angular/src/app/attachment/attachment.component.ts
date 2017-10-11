@@ -1,9 +1,8 @@
 import { Component, Injector, Injectable } from '@angular/core';
 import { AppComponentBase } from '@shared/app-component-base';
 import { appModuleAnimation } from '@shared/animations/routerTransition';
-import { TreeModule,TreeNode, PanelModule, ContextMenuModule, MenuItem, TabViewModule, SelectItem, InputTextModule} from 'primeng/primeng';
+import { TreeModule,TreeNode, PanelModule, ContextMenuModule, MenuItem, TabViewModule} from 'primeng/primeng';
 import { Http} from '@angular/http';
-import { WindowRef } from '@shared/WindowRef'
 
 @Injectable()
 export class NodeService {
@@ -32,27 +31,12 @@ export class AttachmentComponent extends AppComponentBase {
 	// tabs: { name: string, content: string, fname: string }[];
 	tabs: {header: string, closable : boolean, closed : boolean, selected: boolean, data: string}[];
 
-	//pdfViewer
-	pdfZoom: SelectItem[];
-	curZoom: number	;
-	pdfPage: number = 1;
-    pdfBufPage: number = 1;
-	pdfZoomIndex: number;
-	pdfTotalPages: number = 0;
-
 	selectedFile: TreeNode;
     constructor(
         injector: Injector,
-        private nodeService: NodeService,
-        private winRef: WindowRef
+        private nodeService: NodeService
     ) {
         super(injector);
-        this.pdfZoom = [];
-        this.pdfZoom.push({label:'25%', value:0.25});
-        this.pdfZoom.push({label:'50%', value:0.5});
-        this.pdfZoom.push({label:'100%', value:1});
-        this.pdfZoom.push({label:'200%', value:2});
-        this.pdfZoom.push({label:'400%', value:4});
     }
 
     ngOnInit() {
@@ -86,8 +70,6 @@ export class AttachmentComponent extends AppComponentBase {
                 }
             }
         ];
-
-        this.curZoom = 0.5;	
     }
 
     nodeSelect(event) {
@@ -109,46 +91,6 @@ export class AttachmentComponent extends AppComponentBase {
     	console.log(this.index);
     }
 
-    // PDF Function
-    zoomChanged(event): void{
-    	console.log(event);
-    	console.log(this.curZoom);
-    }
-
-    zoomTo(dir): void{
-    	if(dir=='in'){
-    		this.curZoom = this.curZoom * 2;
-    	}else{
-    		this.curZoom = this.curZoom / 2;
-    	}
-    	console.log(this.curZoom);
-    }
-
-    pageTo(dir): void{
-    	if(dir=='next'){
-    		this.pdfPage++;
-
-    	}else{
-    		this.pdfPage--;
-    	}
-        this.pdfBufPage =  this.pdfPage;
-    }
-
-    pdfLoadCompleted(event): void{
-    	this.pdfTotalPages = event.pdfInfo.numPages;
-    }
-
-    printThis(data): void{
-        console.log(data);
-        this.winRef.nativeWindow.open(data).print();
-    }
-
-    gotoPageFromBuf(): void{
-        // console.log(this.pdfBufPage);
-        if(this.pdfBufPage<1)this.pdfBufPage=1;
-        else if(this.pdfBufPage>this.pdfTotalPages)this.pdfBufPage=this.pdfTotalPages;
-
-        this.pdfPage = this.pdfBufPage;
-    }
+    
 
 }
